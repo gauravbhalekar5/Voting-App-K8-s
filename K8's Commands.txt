@@ -1,0 +1,31 @@
+*** Kubernetes all commands ***
+
+kubectl get nodes
+kubectl version
+kubectl version --output=yaml
+kubectl get nodes -o wide
+kubectl get pods
+kubectl run nginx --image=nginx
+kubectl describe pods newpods-mrvrc  (Pod Name: newpods-mrvrc)
+kubectl get pods webapp -o jsonpath='{.spec.containers[*].name}'
+kubectl logs webapp
+kubectl get pods webapp -o jsonpath='{.spec.containers[*].image}'
+kubectl delete pod webapp (pod name: webapp)
+kubectl run redis --image=redis123 --dry-run=client -o yaml > redis-definition.yaml
+
+cat redis-definition.yaml 
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: redis
+  name: redis
+spec:
+  containers:
+  - image: redis123
+    name: redis
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
